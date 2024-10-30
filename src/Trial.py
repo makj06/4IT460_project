@@ -1,11 +1,35 @@
 import pandas as pd
-import sys
+import openpyxl
 
 from sklearn.impute import SimpleImputer
 from cleverminer import cleverminer
 
 #read the data
-df = pd.read_csv ('https://cleverminer.org/data/accidents.zip', encoding='cp1250', sep='\t')
+df = pd.read_excel ('../data/napo.xlsx')
+df2 = df[['Jakou známkou byste ohodnotil(a) české zdravotnictví?']]
+
+# Remove missing values in rows
+imputer = SimpleImputer(strategy="most_frequent")
+df2 = pd.DataFrame(imputer.fit_transform(df2),columns = df2.columns)
+
+
+
+
+# Log first 5 rows
+print(df2.head)
+
+# Log all columns
+print(df.columns)
+
+
+
+
+
+
+
+
+
+'''
 df=df[['Driver_Age_Band','Sex','Speed_limit','Severity']]
 
 #handle missing values
@@ -28,4 +52,4 @@ clm = cleverminer(df=df,proc='4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(8)
+clm.print_rule(8)'''
