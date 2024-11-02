@@ -21,7 +21,7 @@ dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected
 
 
 clm = cleverminer(df=df,proc='SD4ftMiner',
-                  quantifiers= {'Base1':40,'Base2':40, 'Ratiopim':1.5},
+                  quantifiers= {'Base1':40,'Base2':40, 'Ratioconf':1.5},
                   ante ={
                       'attributes':[
                           {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 3},
