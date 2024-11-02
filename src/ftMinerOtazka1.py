@@ -17,13 +17,10 @@ dfSelected=df[['vekova_kategorie','politické_preference', 'hodnoceni_ceskeho_zd
 imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
-#print(dfSelected.head)
-#TODO: upravit lépe hodnoty tak, aby lépe odpovídali otázce.
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':10, 'conf':0.3},
+                  quantifiers= {'Base':100, 'conf':0.3},
                   ante ={
                       'attributes':[
-                         #{'name': 'vekova_kategorie', 'type': 'one', 'value':'65 a více let'}, --- Ukázka jak zapsat typ kategorie one
                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
                           {'name': 'politické_preference', 'type': 'one', 'value':'ANO'},
                       ], 'minlen':1, 'maxlen':1, 'type':'con'},
