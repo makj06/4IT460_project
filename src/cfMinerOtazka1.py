@@ -20,13 +20,13 @@ dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected
 #print(dfSelected.head)
 
 #ochota_priplatit_nadstandardni_pojisteni
-clm = cleverminer(df=df,target='ochota_priplatit_nadstandardni_pojisteni',proc='CFMiner',
-                  quantifiers= {'RelMax': 0.3, 'Base': 100},
+clm = cleverminer(df=df,target='hodnoceni_zdravotnicka_zarizeni',proc='CFMiner',
+                  quantifiers= {'RelMax': 0.3, 'Base': 20},
                   cond ={
                       'attributes':[
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'ochota_priplatit_nadstandardni_pojisteni', 'type': 'lcut', 'minlen': 1, 'maxlen': 2},
-                      ], 'minlen':1, 'maxlen':2, 'type':'con'}
+                      ], 'minlen':2, 'maxlen':2, 'type':'con'}
                   )
 
 clm.print_rulelist()
