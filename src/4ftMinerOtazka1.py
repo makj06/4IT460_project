@@ -33,4 +33,4 @@ clm = cleverminer(df=df,proc='4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(8)
+clm.print_rule(1)
