@@ -11,7 +11,7 @@ df = pd.read_excel ('../data/napo.xlsx')
 #print(df.columns)
 
 #select only required rows
-dfSelected=df[['vekova_kategorie','politické_preference', 'hodnoceni_ceskeho_zdravotnictvi', 'kdy_resit_zmeny']]
+dfSelected=df[['vekova_kategorie','politicke_preference', 'hodnoceni_ceskeho_zdravotnictvi', 'kdy_resit_zmeny']]
 
 #trandform to table
 imputer = SimpleImputer(strategy="most_frequent")
@@ -29,7 +29,7 @@ clm = cleverminer(df=df,proc='4ftMiner',
                   },
                   succ={
                       'attributes': [
-                          {'name': 'politické_preference', 'type': 'one', 'value': 'Spolu (ODS, KDU-ČSL, TOP 09)'}
+                          {'name': 'politicke_preference', 'type': 'one', 'value': 'Spolu (ODS, KDU-ČSL, TOP 09)'}
                       ],
                       'minlen': 1,
                       'maxlen': 1,
