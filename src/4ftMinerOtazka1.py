@@ -18,15 +18,18 @@ imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':100, 'conf':0.3},
+                  quantifiers= {'Base':40, 'conf':0.3},
                   ante ={
                       'attributes':[
                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
-                          {'name': 'politicke_preference', 'type': 'one', 'value':'ANO'},
-                      ], 'minlen':1, 'maxlen':1, 'type':'con'},
+                          {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
+                      ], 'minlen':1, 'maxlen':5, 'type':'con'},
                   succ ={
                       'attributes':[
-                          {'name': 'hodnoceni_ceskeho_zdravotnictvi', 'type': 'lcut', 'minlen': 1, 'maxlen': 2}
+                          {'name': 'hodnoceni_ceskeho_zdravotnictvi', 'type': 'rcut', 'minlen': 1, 'maxlen': 2}
                       ], 'minlen':1, 'maxlen':1 , 'type':'con'}
                   )
 
