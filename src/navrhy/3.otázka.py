@@ -9,7 +9,7 @@ from cleverminer import cleverminer
 #Otázka: Závisí volba politické strany na podpoře návrhu při přerozdělování financí do zdravotnictví, kdy půjde méně financí do sociálních dávek a důchodů?
 
 #read the data
-df = pd.read_excel ('../data/napo.xlsx')
+df = pd.read_excel ('../../data/napo.xlsx')
 #print(df.columns)
 
 #select only required rows
@@ -20,7 +20,7 @@ imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':50, 'conf':0.3},
+                  quantifiers= {'Base':20, 'conf':0.3},
                   ante ={
                       'attributes':[
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
@@ -34,4 +34,4 @@ clm = cleverminer(df=df,proc='4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
+clm.print_rule(2)
