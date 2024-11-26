@@ -11,7 +11,7 @@ df = pd.read_excel ('../data/napo.xlsx')
 #print(df.columns)
 
 #select only required rows
-dfSelected=df[['vekova_kategorie', 'vzdelani', 'kraj','velikost_bydliste', 'politicke_preference','prerozdeleni_financi_zdravotnictvi_socialni_davky_duchody', 'prerozdeleni_financi_zdravotnictvi_skolstvi', 'Q12_prerozdeleni_financi_zdravotnictvi_obrana', 'prerozdeleni_financi_zdravotnictvi_jine_rezorty', 'prerozdeleni_financi_beze_zmeny_uspory_uvnitr_zdravotnictvi']]
+dfSelected=df[['vekova_kategorie', 'vzdelani', 'kraj','velikost_bydliste', 'politicke_preference','ochota_dojizdet_za_kvalitnejsi_peci', 'prerozdeleni_financi_zdravotnictvi_skolstvi', 'Q12_prerozdeleni_financi_zdravotnictvi_obrana', 'prerozdeleni_financi_zdravotnictvi_jine_rezorty', 'prerozdeleni_financi_beze_zmeny_uspory_uvnitr_zdravotnictvi']]
 #trandform to table
 imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
@@ -26,7 +26,7 @@ clm = cleverminer(df=df,target='politicke_preference',proc='CFMiner',
                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'prerozdeleni_financi_zdravotnictvi_jine_rezorty', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'prerozdeleni_financi_zdravotnictvi_socialni_davky_duchody', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                       ], 'minlen':1, 'maxlen':4, 'type':'con'}
                   )
 
