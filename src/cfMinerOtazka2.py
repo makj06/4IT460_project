@@ -22,12 +22,12 @@ clm = cleverminer(df=df,target='souhrn_spokojenost_zdr_zarizeni',proc='CFMiner',
                   quantifiers= {'S_Up': 2, 'Base':15},
                   cond ={
                       'attributes':[
+                          {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                      ], 'minlen':1, 'maxlen':5, 'type':'con'}
+                          ], 'minlen':1, 'maxlen':5, 'type':'con'}
                   )
 
 clm.print_rulelist()

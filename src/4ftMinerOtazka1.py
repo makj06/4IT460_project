@@ -18,7 +18,7 @@ imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':15, 'conf':0.7},
+                  quantifiers= {'Base':10, 'conf':0.8},
                   ante ={
                       'attributes':[
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
@@ -31,12 +31,12 @@ clm = cleverminer(df=df,proc='4ftMiner',
                       ], 'minlen':2, 'maxlen':7, 'type':'con'},
                   succ ={
                       'attributes':[
-                          {'name': 'ochota_dojizdet_za_kvalitnejsi_peci', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
+                          {'name': 'ochota_dojizdet_za_kvalitnejsi_peci', 'type': 'one', 'value': "Do vzdálenosti 1 hodiny"}
                       ], 'minlen':1, 'maxlen':1 , 'type':'con'}
                   )
 
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
-clm.draw_rule(1)
+clm.print_rule(6)
+clm.draw_rule(6)

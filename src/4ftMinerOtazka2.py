@@ -11,33 +11,33 @@ df = pd.read_excel ('../data/napo.xlsx')
 #print(df.columns)
 
 #select only required rows
-dfSelected=df[['vekova_kategorie','politicke_preference', 'hodnoceni_ceskeho_zdravotnictvi', 'kdy_resit_zmeny']]
+dfSelected=df[['vekova_kategorie','politicke_preference', 'vzdelani', 'kraj','velikost_bydliste', 'ekonomicke_postaveni', 'cisty_mesicni_prijem', 'platba_bez_zkusenosti']]
 
 #trandform to table
 imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':100, 'conf':0.9},
+                  quantifiers= {'Base':20, 'conf':0.8},
                   ante={
                       'attributes': [
-                          {'name': 'kdy_resit_zmeny', 'type': 'one', 'value': 'Co nejdříve, ihned'}
-                      ],
-                      'minlen': 1,
-                      'maxlen': 1,
-                      'type': 'con'
-                  },
+                          {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'cisty_mesicni_prijem', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'ekonomicke_postaveni', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                      ], 'minlen':2, 'maxlen':7, 'type':'con'},
                   succ={
                       'attributes': [
-                          {'name': 'politicke_preference', 'type': 'one', 'value': 'Spolu (ODS, KDU-ČSL, TOP 09)'}
+                          {'name': 'platba_bez_zkusenosti', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
                       ],
-                      'minlen': 1,
-                      'maxlen': 1,
-                      'relBase': 0.05,
-                      'type': 'con'
+                      'minlen': 1, 'maxlen': 1, 'type': 'con'
                   }
                   )
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
+clm.print_rule(2)
+clm.draw_rule(2)
