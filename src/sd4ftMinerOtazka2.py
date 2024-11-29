@@ -26,10 +26,10 @@ clm = cleverminer(df=df,proc='SD4ftMiner',
                   quantifiers= {'Base1':30,'Base2':30, 'Ratioconf':2},
                   ante ={
                       'attributes':[
-                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 3},
+                          {'name': 'vekova_kategorie', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
                           {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 3},
                           {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
-                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
+                          {'name': 'velikost_bydliste', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
                           {'name': 'pohlavi', 'type': 'subset', 'minlen': 1, 'maxlen': 2},
                       ], 'minlen':1, 'maxlen':4, 'type':'con'},
                   succ ={
@@ -49,4 +49,5 @@ clm = cleverminer(df=df,proc='SD4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
+clm.print_rule(8)
+clm.draw_rule(8)
