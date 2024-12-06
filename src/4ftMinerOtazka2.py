@@ -18,17 +18,16 @@ imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
 clm = cleverminer(df=df,proc='4ftMiner',
-                  quantifiers= {'Base':20, 'conf':0.8},
+                  quantifiers= {'Base':30, 'conf':0.8},
                   ante={
                       'attributes': [
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vekova_kategorie', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
                           {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'cisty_mesicni_prijem', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
+                          {'name': 'vzdelani', 'type': 'seq', 'minlen': 1, 'maxlen': 3},
                           {'name': 'ekonomicke_postaveni', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                      ], 'minlen':2, 'maxlen':7, 'type':'con'},
+                      ], 'minlen':2, 'maxlen':6, 'type':'con'},
                   succ={
                       'attributes': [
                           {'name': 'platba_bez_zkusenosti', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
@@ -39,5 +38,5 @@ clm = cleverminer(df=df,proc='4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(2)
-clm.draw_rule(2)
+clm.print_rule(10)
+clm.draw_rule(10)
