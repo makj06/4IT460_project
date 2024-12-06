@@ -22,13 +22,12 @@ clm = cleverminer(df=df,proc='4ftMiner',
                   ante ={
                       'attributes':[
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vekova_kategorie', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
                           {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'cisty_mesicni_prijem', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
+                          {'name': 'vzdelani', 'type': 'seq', 'minlen': 1, 'maxlen': 3},
                           {'name': 'ekonomicke_postaveni', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                      ], 'minlen':2, 'maxlen':7, 'type':'con'},
+                      ], 'minlen':2, 'maxlen':6, 'type':'con'},
                   succ ={
                       'attributes':[
                           {'name': 'ochota_dojizdet_za_kvalitnejsi_peci', 'type': 'subset', 'minlen': 1, 'maxlen': 1}
@@ -38,5 +37,5 @@ clm = cleverminer(df=df,proc='4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
-clm.draw_rule(1)
+clm.print_rule(2)
+clm.draw_rule(2)
