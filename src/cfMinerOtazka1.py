@@ -11,7 +11,7 @@ df = pd.read_excel ('../data/napo.xlsx')
 #print(df.columns)
 
 #select only required rows
-dfSelected=df[['hodnoceni_zdravotnicka_zarizeni','politicke_preference', 'ochota_priplatit_nadstandardni_pojisteni']]
+dfSelected=df[['zmena_zdravotnictvi_5_let','politicke_preference','souhrn_spokojenost_zdr_zarizeni', 'vekova_kategorie', 'vzdelani', 'kraj', 'velikost_bydliste']]
 
 #trandform to table
 imputer = SimpleImputer(strategy="most_frequent")
@@ -20,15 +20,19 @@ dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected
 #print(dfSelected.head)
 
 #ochota_priplatit_nadstandardni_pojisteni
-clm = cleverminer(df=df,target='hodnoceni_zdravotnicka_zarizeni',proc='CFMiner',
-                  quantifiers= {'RelMax': 0.3, 'Base': 20},
+clm = cleverminer(df=df,target='zmena_zdravotnictvi_5_let',proc='CFMiner',
+                  quantifiers= {'S_Up': 3, 'Base': 20},
                   cond ={
                       'attributes':[
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'ochota_priplatit_nadstandardni_pojisteni', 'type': 'lcut', 'minlen': 1, 'maxlen': 2},
-                      ], 'minlen':2, 'maxlen':2, 'type':'con'}
+                          {'name': 'vekova_kategorie', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
+                          {'name': 'vzdelani', 'type': 'seq', 'minlen': 1, 'maxlen': 3},
+                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
+                          ], 'minlen':1, 'maxlen':5, 'type':'con'}
                   )
 
 clm.print_rulelist()
 clm.print_summary()
-clm.print_rule(1)
+clm.print_rule(2)
+clm.draw_rule(2)

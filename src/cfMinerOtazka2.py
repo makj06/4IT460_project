@@ -19,18 +19,18 @@ dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected
 
 #print(dfSelected.head)
 clm = cleverminer(df=df,target='souhrn_spokojenost_zdr_zarizeni',proc='CFMiner',
-                  quantifiers= {'S_Up': 2, 'Base':15},
+                  quantifiers= {'S_Up': 2, 'Base':30},
                   cond ={
                       'attributes':[
-                          {'name': 'vekova_kategorie', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'vzdelani', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
-                          {'name': 'velikost_bydliste', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
                           {'name': 'politicke_preference', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'vekova_kategorie', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
+                          {'name': 'vzdelani', 'type': 'seq', 'minlen': 1, 'maxlen': 3},
+                          {'name': 'kraj', 'type': 'subset', 'minlen': 1, 'maxlen': 1},
+                          {'name': 'velikost_bydliste', 'type': 'seq', 'minlen': 1, 'maxlen': 2},
                       ], 'minlen':1, 'maxlen':5, 'type':'con'}
                   )
 
 clm.print_rulelist()
 clm.print_summary()
-clm.print_rule(1)
-clm.draw_rule(1)
+clm.print_rule(2)
+clm.draw_rule(2)
