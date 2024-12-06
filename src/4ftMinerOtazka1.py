@@ -13,7 +13,7 @@ df = pd.read_excel ('../data/napo.xlsx')
 #select only required rows
 dfSelected=df[['vekova_kategorie','politicke_preference', 'vzdelani','hodnoceni_ceskeho_zdravotnictvi', 'kraj','velikost_bydliste', 'ekonomicke_postaveni', 'cisty_mesicni_prijem']]
 
-#trandform to table
+#transform to table
 imputer = SimpleImputer(strategy="most_frequent")
 dfSelected = pd.DataFrame(imputer.fit_transform(dfSelected),columns = dfSelected.columns)
 
