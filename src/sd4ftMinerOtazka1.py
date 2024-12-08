@@ -47,4 +47,5 @@ clm = cleverminer(df=df,proc='SD4ftMiner',
 
 clm.print_summary()
 clm.print_rulelist()
-clm.print_rule(1)
+clm.print_rule(15)
+clm.draw_rule(15)
